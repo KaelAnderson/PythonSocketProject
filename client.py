@@ -22,6 +22,9 @@ def main():
         print(f"Server Response: {reversed_message}")
         if reversed_message == "dne":
             client_socket.close()
+            break
+
+            
 
 if __name__ == '__main__':
     main()

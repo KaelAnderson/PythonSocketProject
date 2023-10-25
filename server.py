@@ -28,8 +28,9 @@ def main():
                 reversed_data = reverse_string(data) #call the reverse string function
                 client_socket.send(reversed_data.encode('utf-8')) # send back the reversed data    
                 if data == 'end':
-                     client_socket.close()
                      print(f"Connection with {addr} closed")
+                     client_socket.close()
+                     
             
 
 
