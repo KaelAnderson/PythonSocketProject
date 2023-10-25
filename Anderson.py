@@ -1,7 +1,7 @@
 import socket
 
 def reverse_string(input_string):
-    return input_string[::-1]   #this reverses the string using regex
+    return input_string[::-1]   #this reverses the string using basic regex
 
 def main():
     # create the socket for the server
@@ -21,15 +21,17 @@ def main():
         print(f"Connection from {addr}")
 
         while True:
-            data = client_socket.recv(1024).decode('utf-8')
-            if not data:
+            #constantly check for a message recieved
+            data = client_socket.recv(1024).decode('utf-8') # decodes the signal into text
+
+            if not data:#if theres no message, continue listening
                 break
-            else:
+            else:# if there is a message
                 reversed_data = reverse_string(data) #call the reverse string function
                 client_socket.send(reversed_data.encode('utf-8')) # send back the reversed data    
-                if data == 'end':
+                if data == 'end':# if the signal to end the program is recieved
                      print(f"Connection with {addr} closed")
-                     client_socket.close()
+                     client_socket.close()#end the connection
                      
             
 
